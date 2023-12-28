@@ -12,7 +12,6 @@ import (
 // FailIfClosed returns a sys.ExitError if CloseWithExitCode was called.
 func (m *ModuleInstance) FailIfClosed() (err error) {
 	fmt.Println("FailIfClosed")
-	return
 	if closed := m.Closed.Load(); closed != 0 {
 		switch closed & exitCodeFlagMask {
 		case exitCodeFlagResourceClosed:
