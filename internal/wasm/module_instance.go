@@ -12,6 +12,7 @@ import (
 // FailIfClosed returns a sys.ExitError if CloseWithExitCode was called.
 func (m *ModuleInstance) FailIfClosed() (err error) {
 	fmt.Println("FailIfClosed")
+	return
 	if closed := m.Closed.Load(); closed != 0 {
 		switch closed & exitCodeFlagMask {
 		case exitCodeFlagResourceClosed:
@@ -100,6 +101,7 @@ func (m *ModuleInstance) Close(ctx context.Context) (err error) {
 // CloseWithExitCode implements the same method as documented on api.Module.
 func (m *ModuleInstance) CloseWithExitCode(ctx context.Context, exitCode uint32) (err error) {
 	fmt.Println("CloseWithExitCode")
+	return
 	if !m.setExitCode(exitCode, exitCodeFlagResourceClosed) {
 		return nil // not an error to have already closed
 	}
@@ -113,6 +115,8 @@ func (m *ModuleInstance) IsClosed() bool {
 }
 
 func (m *ModuleInstance) closeWithExitCodeWithoutClosingResource(exitCode uint32) (err error) {
+	fmt.Println("closeWithExitCodeWithoutClosingResource")
+	return
 	if !m.setExitCode(exitCode, exitCodeFlagResourceNotClosed) {
 		return nil // not an error to have already closed
 	}
@@ -123,6 +127,7 @@ func (m *ModuleInstance) closeWithExitCodeWithoutClosingResource(exitCode uint32
 // closeWithExitCode is the same as CloseWithExitCode besides this doesn't delete it from Store.moduleList.
 func (m *ModuleInstance) closeWithExitCode(ctx context.Context, exitCode uint32) (err error) {
 	fmt.Println("closeWithExitCode")
+	return
 	if !m.setExitCode(exitCode, exitCodeFlagResourceClosed) {
 		return nil // not an error to have already closed
 	}
