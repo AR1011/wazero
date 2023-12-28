@@ -123,7 +123,7 @@ func (m *ModuleInstance) closeWithExitCode(ctx context.Context, exitCode uint32)
 	if !m.setExitCode(exitCode, exitCodeFlagResourceClosed) {
 		return nil // not an error to have already closed
 	}
-	return m.ensureResourcesClosed(ctx)
+	return nil
 }
 
 type exitCodeFlag = uint64
