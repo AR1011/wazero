@@ -4,9 +4,9 @@ import (
 	"fmt"
 	pathutil "path"
 
-	"github.com/tetratelabs/wazero/api"
-	"github.com/tetratelabs/wazero/internal/gojs/custom"
-	"github.com/tetratelabs/wazero/internal/wasm"
+	"github.com/AR1011/wazero/api"
+	"github.com/AR1011/wazero/internal/gojs/custom"
+	"github.com/AR1011/wazero/internal/wasm"
 )
 
 // MustWrite is like api.Memory except that it panics if the offset

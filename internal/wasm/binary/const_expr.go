@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/tetratelabs/wazero/api"
-	"github.com/tetratelabs/wazero/internal/ieee754"
-	"github.com/tetratelabs/wazero/internal/leb128"
-	"github.com/tetratelabs/wazero/internal/wasm"
+	"github.com/AR1011/wazero/api"
+	"github.com/AR1011/wazero/internal/ieee754"
+	"github.com/AR1011/wazero/internal/leb128"
+	"github.com/AR1011/wazero/internal/wasm"
 )
 
 func decodeConstantExpression(r *bytes.Reader, enabledFeatures api.CoreFeatures, ret *wasm.ConstantExpression) error {

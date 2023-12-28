@@ -1,8 +1,8 @@
 package backend
 
 import (
-	"github.com/tetratelabs/wazero/internal/engine/wazevo/backend/regalloc"
-	"github.com/tetratelabs/wazero/internal/engine/wazevo/ssa"
+	"github.com/AR1011/wazero/internal/engine/wazevo/backend/regalloc"
+	"github.com/AR1011/wazero/internal/engine/wazevo/ssa"
 )
 
 // SSAValueDefinition represents a definition of an SSA value.

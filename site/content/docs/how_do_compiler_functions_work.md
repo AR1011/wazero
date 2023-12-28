@@ -3,9 +3,9 @@
 WebAssembly runtimes let you call functions defined in wasm. How this works in
 wazero is different depending on your `RuntimeConfig`.
 
-* `RuntimeConfigCompiler` compiles machine code from your wasm, and jumps to
+- `RuntimeConfigCompiler` compiles machine code from your wasm, and jumps to
   that when invoking a function.
-* `RuntimeConfigInterpreter` does not generate code. It interprets wasm and
+- `RuntimeConfigInterpreter` does not generate code. It interprets wasm and
   executes go statements that correspond to WebAssembly instructions.
 
 How the compiler works precisely is a large topic, and discussed at length on
@@ -62,8 +62,9 @@ However, [CGO is not GO][cgo-not-go]. To call native functions in pure Go, we
 need a different approach with unique constraints.
 
 The most notable constraints are:
-* machine code must not manipulate the Goroutine or system stack
-* we cannot modify the signal handler of Go at runtime
+
+- machine code must not manipulate the Goroutine or system stack
+- we cannot modify the signal handler of Go at runtime
 
 ### Handling the call stack
 
@@ -80,6 +81,7 @@ function. Let's say the wasm function corresponding to that is called `_start`.
 `_start` function is called by wazero by default on `Instantiate`.
 
 Here is a TinyGo source file describing this.
+
 ```go
 //go:import wasi_snapshot_preview1 random_get
 func random_get(age int32)package main
@@ -117,6 +119,7 @@ instruction to `random_get`.
 Here's what the "trampoline strategy" looks like in a diagram. For simplicity,
 we'll say the wasm memory offset of the `buf` is zero, but it will be different
 in real execution.
+
 ```goat
    |                                     Go              |           Machine Code
    |                                                           (compiled from main.wasm)
@@ -165,6 +168,7 @@ code. Machine code sets status when it encounters an `unreachable` instruction.
 This is read by wazero, which propagates it back with `ErrRuntimeUnreachable`.
 
 Here's a diagram showing this:
+
 ```goat
    |                               Go                 |                             Machine Code
    |                                                                          (compiled from main.wasm)
@@ -206,14 +210,15 @@ it.
 For more details, see [RATIONALE.md][compiler-rationale].
 
 [call-stack]: https://en.wikipedia.org/wiki/Call_stack
-[api-function]: https://pkg.go.dev/github.com/tetratelabs/wazero@v1.0.0-rc.1/api#Function
-[api-module]: https://pkg.go.dev/github.com/tetratelabs/wazero@v1.0.0-rc.1/api#Module
+[api-function]: https://pkg.go.dev/github.com/AR1011/wazero@v1.0.0-rc.1/api#Function
+[api-module]: https://pkg.go.dev/github.com/AR1011/wazero@v1.0.0-rc.1/api#Module
 [spec-function-instance]: https://www.w3.org/TR/2019/REC-wasm-core-1-20191205/#function-instances%E2%91%A0
 [spec-trap]: https://www.w3.org/TR/2019/REC-wasm-core-1-20191205/#trap
 [spec-unreachable]: https://www.w3.org/TR/2019/REC-wasm-core-1-20191205/#syntax-instr-control
-[compiler-rationale]: https://github.com/tetratelabs/wazero/blob/v1.0.0-rc.1/internal/engine/compiler/RATIONALE.md
+[compiler-rationale]: https://github.com/AR1011/wazero/blob/v1.0.0-rc.1/internal/engine/compiler/RATIONALE.md
 [signal-handler-discussion]: https://gophers.slack.com/archives/C1C1YSQBT/p1675992411241409
 [cgo-not-go]: https://www.youtube.com/watch?v=PAAkCSZUG1c&t=757s
 
-[^1]: it's technically possible to call it directly, but that would come with performing "stack switching" in the native code.
-  It's almost the same as what wazero does: exiting the execution of machine code, then call the target Go function (using the caller of machine code as a "trampoline").
+[^1]:
+    it's technically possible to call it directly, but that would come with performing "stack switching" in the native code.
+    It's almost the same as what wazero does: exiting the execution of machine code, then call the target Go function (using the caller of machine code as a "trampoline").

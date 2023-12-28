@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/tetratelabs/wazero/internal/asm"
-	"github.com/tetratelabs/wazero/internal/wasm"
+	"github.com/AR1011/wazero/internal/asm"
+	"github.com/AR1011/wazero/internal/wasm"
 )
 
 var (

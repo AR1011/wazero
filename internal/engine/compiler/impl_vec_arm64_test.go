@@ -4,11 +4,11 @@ import (
 	"encoding/binary"
 	"testing"
 
-	"github.com/tetratelabs/wazero/internal/asm"
-	"github.com/tetratelabs/wazero/internal/asm/arm64"
-	"github.com/tetratelabs/wazero/internal/testing/require"
-	"github.com/tetratelabs/wazero/internal/wasm"
-	"github.com/tetratelabs/wazero/internal/wazeroir"
+	"github.com/AR1011/wazero/internal/asm"
+	"github.com/AR1011/wazero/internal/asm/arm64"
+	"github.com/AR1011/wazero/internal/testing/require"
+	"github.com/AR1011/wazero/internal/wasm"
+	"github.com/AR1011/wazero/internal/wazeroir"
 )
 
 // TestArm64Compiler_V128Shuffle_ConstTable_MiddleOfFunction ensures that flushing constant table in the middle of

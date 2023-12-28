@@ -8,6 +8,7 @@ When `GOOS=js GOARCH=wasm`, Go's compiler targets WebAssembly Binary format
 (%.wasm).
 
 Here's a typical compilation command:
+
 ```bash
 $ GOOS=js GOARCH=wasm go build -o my.wasm .
 ```
@@ -40,8 +41,9 @@ features.
 [15] unless `GOWASM` includes features added afterwards.
 
 Here are the valid [GOWASM values][16]:
-* `satconv` - [Non-trapping Float-to-int Conversions][17]
-* `signext` - [Sign-extension operators][18]
+
+- `satconv` - [Non-trapping Float-to-int Conversions][17]
+- `signext` - [Sign-extension operators][18]
 
 Note that both the above features are included [working draft][19] of
 WebAssembly Core Specification 2.0.
@@ -62,12 +64,13 @@ values returned (such as the pid). When not supported, many functions return
 
 Here are the more notable parts of Go which will not work when compiled via
 `GOOS=js GOARCH=wasm`, resulting in `syscall.ENOSYS` errors:
-* Raw network access. e.g. `net.Bind`
-* File descriptor control (`fnctl`). e.g. `syscall.Pipe`
-* Arbitrary syscalls. Ex `syscall.Syscall`
-* Process control. e.g. `syscall.Kill`
-* Kernel parameters. e.g. `syscall.Sysctl`
-* Timezone-specific clock readings. e.g. `syscall.Gettimeofday`
+
+- Raw network access. e.g. `net.Bind`
+- File descriptor control (`fnctl`). e.g. `syscall.Pipe`
+- Arbitrary syscalls. Ex `syscall.Syscall`
+- Process control. e.g. `syscall.Kill`
+- Kernel parameters. e.g. `syscall.Sysctl`
+- Timezone-specific clock readings. e.g. `syscall.Gettimeofday`
 
 ## Memory
 
@@ -83,7 +86,7 @@ Please read our overview of WebAssembly and
 a stack-based virtual machine specification, so operates at a lower level than
 an operating system.
 
-"syscall/js.*" are host functions for features the operating system would
+"syscall/js.\*" are host functions for features the operating system would
 otherwise provide. These also manage the JavaScript object graph, including
 functions to make and finalize objects, arrays and numbers (`js.Value`).
 
@@ -136,9 +139,9 @@ results: the real result and a boolean, represented by an integer.
 When false, `js.Value.Call` panics with a `js.Error` constructed from the first
 result. This result must be an object with one of the below properties:
 
-* JavaScript (GOOS=js): the string property "message" can be anything.
-* Syscall error (GOARCH=wasm): the string property "code" is constrained.
-  * The code must be like "EIO" in [errnoByCode][13] to avoid a panic.
+- JavaScript (GOOS=js): the string property "message" can be anything.
+- Syscall error (GOARCH=wasm): the string property "code" is constrained.
+  - The code must be like "EIO" in [errnoByCode][13] to avoid a panic.
 
 Details beyond this are best looking at the source code of [js.go][5], or its
 unit tests.
@@ -149,6 +152,7 @@ If you have a `%.wasm` file compiled by Go (via [asm.go][2]), it has a custom
 section named "go.buildid".
 
 You can verify this with wasm-objdump, a part of [wabt][3]:
+
 ```
 $ wasm-objdump --section=go.buildid -x my.wasm
 
@@ -165,10 +169,10 @@ Custom:
 Until [wasmexport][4] is implemented, the [compiled][2] WebAssembly exports are
 always the same:
 
-* "mem" - (memory 265) 265 = data section plus 16MB
-* "run" - (func (param $argc i32) (param $argv i32)) the entrypoint
-* "resume" - (func) continues work after a timer delay
-* "getsp" - (func (result i32)) returns the stack pointer
+- "mem" - (memory 265) 265 = data section plus 16MB
+- "run" - (func (param $argc i32) (param $argv i32)) the entrypoint
+- "resume" - (func) continues work after a timer delay
+- "getsp" - (func (result i32)) returns the stack pointer
 
 ## Module Imports
 
@@ -178,9 +182,9 @@ functions are imported.
 Except for the "debug" function, all function names are prefixed by their go
 package. Here are the defaults:
 
-* "debug" - is always function index zero, but it has unknown use.
-* "runtime.*" - supports system-call like functionality `GOARCH=wasm`
-* "syscall/js.*" - supports the JavaScript model `GOOS=js`
+- "debug" - is always function index zero, but it has unknown use.
+- "runtime.\*" - supports system-call like functionality `GOARCH=wasm`
+- "syscall/js.\*" - supports the JavaScript model `GOOS=js`
 
 ## PC_B calling conventions
 
@@ -207,13 +211,14 @@ Note: WebAssembly compatible calling conventions has been discussed and
 
 [Several functions][6] differ in calling convention by using WebAssembly type
 signatures instead of the single SP parameter summarized above. Functions used
-by the host have a "wasm_export_" prefix, which is stripped. For example,
+by the host have a "wasm*export*" prefix, which is stripped. For example,
 "wasm_export_run" is exported as "run", defined in [rt0_js_wasm.s][7]
 
 Here is an overview of the Go-defined exported functions:
- * "run" - Accepts "argc" and "argv" i32 params and begins the "wasm_pc_f_loop"
- * "resume" - Nullary function that resumes execution until it needs an event.
- * "getsp" - Returns the i32 stack pointer (SP)
+
+- "run" - Accepts "argc" and "argv" i32 params and begins the "wasm_pc_f_loop"
+- "resume" - Nullary function that resumes execution until it needs an event.
+- "getsp" - Returns the i32 stack pointer (SP)
 
 ## User-defined Host Functions
 
@@ -222,6 +227,7 @@ without a body in their source and a `%_wasm.s` or `%_js.s` file that uses the
 `CallImport` instruction.
 
 For example, given `func logString(msg string)` and the below assembly:
+
 ```assembly
 #include "textflag.h"
 
@@ -276,8 +282,9 @@ go version devel go1.19-c5da4fb7ac Fri Jul 22 20:12:19 2022 +0000 darwin/amd64
 ```
 
 Tips:
-* The above `bin/go` was built with whatever go version you had in your path!
-* `GOARCH` here is what the resulting `go` binary can target. It isn't the
+
+- The above `bin/go` was built with whatever go version you had in your path!
+- `GOARCH` here is what the resulting `go` binary can target. It isn't the
   architecture of the current host (`GOHOSTARCH`).
 
 ### Setup ENV variables for your branch.
@@ -302,6 +309,7 @@ The main thing to keep in mind is where files are, and remember to set
 
 For example, if you fixed something in the `syscall/js` package
 (`${GOROOT}/src/syscall/js`), test it like so:
+
 ```bash
 $ GOOS=js GOARCH=wasm go test syscall/js
 ok  	syscall/js	1.093s
@@ -314,6 +322,7 @@ Here are some notes about testing `GOOS=js GOARCH=wasm`
 #### Skipped tests
 
 You may find tests are skipped (e.g. when run with `-v` arg).
+
 ```
 === RUN   TestSeekError
     os_test.go:1598: skipping test on js
@@ -361,7 +370,7 @@ the host operating system's underlying controls permit.
 [11]: https://github.com/WebAssembly/proposals
 [12]: https://github.com/golang/go/blob/go1.20/src/cmd/link/internal/ld/data.go#L2457
 [13]: https://github.com/golang/go/blob/go1.20/src/syscall/tables_js.go#L371-L494
-[14]: https://github.com/tetratelabs/wazero/tree/main/experimental/gojs/example
+[14]: https://github.com/AR1011/wazero/tree/main/experimental/gojs/example
 [15]: https://www.w3.org/TR/2019/REC-wasm-core-1-20191205/
 [16]: https://github.com/golang/go/blob/go1.20/src/internal/buildcfg/cfg.go#L136-L150
 [17]: https://github.com/WebAssembly/spec/blob/wg-2.0.draft1/proposals/nontrapping-float-to-int-conversion/Overview.md

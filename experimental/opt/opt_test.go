@@ -5,9 +5,9 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/tetratelabs/wazero"
-	"github.com/tetratelabs/wazero/experimental/opt"
-	"github.com/tetratelabs/wazero/internal/testing/require"
+	"github.com/AR1011/wazero"
+	"github.com/AR1011/wazero/experimental/opt"
+	"github.com/AR1011/wazero/internal/testing/require"
 )
 
 func TestUseOptimizingCompiler(t *testing.T) {

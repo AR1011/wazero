@@ -7,8 +7,8 @@ title = "TinyGo"
 [TinyGo][1] is an alternative compiler for Go source code. It can generate
 `%.wasm` files instead of architecture-specific binaries through two targets:
 
-* `wasm`: for browser (JavaScript) use.
-* `wasi`: for use outside the browser.
+- `wasm`: for browser (JavaScript) use.
+- `wasi`: for use outside the browser.
 
 This document is maintained by wazero, which is a WebAssembly runtime that
 embeds in Go applications. Hence, all notes below will be about TinyGo's
@@ -39,6 +39,7 @@ func main() {}
 ```
 
 The following is the minimal command to build a `%.wasm` binary.
+
 ```bash
 tinygo build -o main.wasm -target=wasi main.go
 ```
@@ -71,6 +72,7 @@ TinyGo does not completely implement the Go standard library when targeting
 
 The first constraint people notice is that `encoding/json` usage compiles, but
 panics at runtime.
+
 ```go
 package main
 
@@ -87,6 +89,7 @@ func main() {
 	}
 }
 ```
+
 This is due to limited support for reflection, and effects other [serialization
 tools][18] also. See [Frequently Asked Questions](#frequently-asked-questions)
 for some workarounds.
@@ -128,12 +131,14 @@ write JSON of a given length before invoking an exported function to parse it.
 
 The below snippet is a realistic example of a function exported to the host,
 who needs to allocate memory first.
+
 ```go
 //export configure
 func configure(ptr uintptr, size uint32) {
 	json := ptrToString(ptr, size)
 }
 ```
+
 Note: WebAssembly uses 32-bit memory addressing, so a `uintptr` is 32-bits.
 
 The general flow is that the host allocates memory by calling an allocation
@@ -149,19 +154,19 @@ The general call patterns are the following. Host is the process embedding the
 WebAssembly runtime, such as wazero. Guest is the TinyGo source compiled to
 target wasi.
 
-* Host allocates a string to call an exported Guest function
-  * Host calls the built-in export `malloc` to get the memory offset to write
+- Host allocates a string to call an exported Guest function
+  - Host calls the built-in export `malloc` to get the memory offset to write
     the string, which is passed as a parameter to the exported Guest function.
     The host owns that allocation, so must call the built-in export `free` when
     done. The Guest uses `ptrToString` to retrieve the string from the Wasm
     parameters.
-* Guest passes a string to an imported Host function
-  * Guest uses `stringToPtr` to get the memory offset needed by the Host
+- Guest passes a string to an imported Host function
+  - Guest uses `stringToPtr` to get the memory offset needed by the Host
     function. The host reads that string directly from Wasm memory. The
     original string is subject to garbage collection on the Guest, so the Host
     shouldn't call the built-in export `free` on it.
-* Guest returns a string from an exported function
-  * Guest uses `ptrToLeakedString` to get the memory offset needed by the Host,
+- Guest returns a string from an exported function
+  - Guest uses `ptrToLeakedString` to get the memory offset needed by the Host,
     and returns it and the length. This is a transfer of ownership, so the
     string won't be garbage collected on the Guest. The host reads that string
     directly from Wasm memory and must call the built-in export `free` when
@@ -169,6 +174,7 @@ target wasi.
 
 The built-in `malloc` and `free` functions the Host calls like this in the
 WebAssembly text format.
+
 ```webassembly
 (func (export "malloc") (param $size i32) (result (;$ptr;) i32))
 (func (export "free") (param $ptr i32))
@@ -244,6 +250,7 @@ concurrency.
 In summary, TinyGo supports goroutines by default and acts like `GOMAXPROCS=1`.
 Since [goroutines are not threads][24], the following code will run with the
 expected output, despite goroutines defined in opposite dependency order.
+
 ```go
 package main
 
@@ -284,16 +291,16 @@ Those with `%.wasm` binary size constraints can set `tinygo` flags to reduce
 it. For example, a simple `cat` program can reduce from default of 260KB to
 60KB using both flags below.
 
-* `-scheduler=none`: Reduces size, but fails at compile time on goroutines.
-* `--no-debug`: Strips DWARF, but retains the WebAssembly name section.
+- `-scheduler=none`: Reduces size, but fails at compile time on goroutines.
+- `--no-debug`: Strips DWARF, but retains the WebAssembly name section.
 
 ### Performance
 
 Those with runtime performance constraints can set `tinygo` flags to improve
 it.
 
-* `-gc=leaking`: Avoids GC which improves performance for short-lived programs.
-* `-opt=2`: Enable additional optimizations, frequently at the expense of binary
+- `-gc=leaking`: Avoids GC which improves performance for short-lived programs.
+- `-opt=2`: Enable additional optimizations, frequently at the expense of binary
   size.
 
 ## Frequently Asked Questions
@@ -305,15 +312,18 @@ If you are using TinyGo's `wasi` target, you should define at least a no-op
 
 If you don't, instantiation of the WebAssembly will fail unless you've exported
 the following from the host:
+
 ```webassembly
 (func (import "env" "main.main") (param i32) (result i32))
 ```
 
 ### How do I use json?
+
 TinyGo doesn't yet implement [reflection APIs][16] needed by `encoding/json`.
 Meanwhile, most users resort to non-reflective parsers, such as [gjson][17].
 
 ### Why does my wasm import WASI functions even when I don't use it?
+
 TinyGo has a `wasm` target (for browsers) and a `wasi` target for runtimes that
 support [WASI]({{< ref "/specs#wasi" >}}). This document is written only about
 the `wasi` target.
@@ -326,6 +336,7 @@ A bare or standalone WebAssembly target doesn't yet exist, but if interested,
 you can follow [this issue][19].
 
 ### Why is my `%.wasm` binary so big?
+
 TinyGo defaults can be overridden for those who can sacrifice features or
 performance for a [smaller binary](#binary-size). After that, tuning your
 source code may reduce binary size further.
@@ -338,10 +349,10 @@ functions, such as `fmt.Println`, which can require 100KB of wasm.
 [1]: https://tinygo.org/
 [4]: https://tinygo.org/docs/guides/webassembly/
 [5]: https://github.com/tinygo-org/tinygo#getting-help
-[6]: https://github.com/tetratelabs/wazero/tree/main/site/content/languages/tinygo.md
-[7]: https://github.com/tetratelabs/wazero/stargazers
-[8]: https://github.com/tetratelabs/wazero/tree/main/examples/allocation/tinygo
-[9]: https://github.com/tetratelabs/tinymem
+[6]: https://github.com/AR1011/wazero/tree/main/site/content/languages/tinygo.md
+[7]: https://github.com/AR1011/wazero/stargazers
+[8]: https://github.com/AR1011/wazero/tree/main/examples/allocation/tinygo
+[9]: https://github.com/AR1011/tinymem
 [11]: https://github.com/tinygo-org/tinygo/blob/v0.25.0/targets/wasi.json
 [12]: https://github.com/WebAssembly/wasi-libc
 [13]: https://github.com/tinygo-org/tinygo/blob/v0.25.0/src/runtime/runtime_wasm_wasi.go#L34-L62
@@ -352,8 +363,8 @@ functions, such as `fmt.Println`, which can require 100KB of wasm.
 [18]: https://github.com/tinygo-org/tinygo/issues/447
 [19]: https://github.com/tinygo-org/tinygo/issues/3068
 [20]: https://github.com/tinygo-org/tinygo/blob/v0.25.0/src/runtime/arch_tinygowasm.go#L47-L62
-[21]: https://github.com/tetratelabs/wazero/tree/main/imports/wasi_snapshot_preview1/example
-[22]: https://github.com/tetratelabs/wazero/tree/main/imports/wasi_snapshot_preview1/example/testdata/tinygo
+[21]: https://github.com/AR1011/wazero/tree/main/imports/wasi_snapshot_preview1/example
+[22]: https://github.com/AR1011/wazero/tree/main/imports/wasi_snapshot_preview1/example/testdata/tinygo
 [23]: https://github.com/WebAssembly/binaryen/blob/main/src/passes/Asyncify.cpp
 [24]: http://tleyden.github.io/blog/2014/10/30/goroutines-vs-threads/
 [25]: https://github.com/tinygo-org/tinygo/issues/3095

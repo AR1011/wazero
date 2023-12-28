@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/tetratelabs/wazero/internal/engine/wazevo/wazevoapi"
+	"github.com/AR1011/wazero/internal/engine/wazevo/wazevoapi"
 )
 
 // RunPasses implements Builder.RunPasses.

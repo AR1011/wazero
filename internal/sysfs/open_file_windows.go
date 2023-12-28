@@ -7,8 +7,8 @@ import (
 	"syscall"
 	"unsafe"
 
-	"github.com/tetratelabs/wazero/experimental/sys"
-	"github.com/tetratelabs/wazero/internal/platform"
+	"github.com/AR1011/wazero/experimental/sys"
+	"github.com/AR1011/wazero/internal/platform"
 )
 
 func openFile(path string, oflag sys.Oflag, perm fs.FileMode) (*os.File, sys.Errno) {

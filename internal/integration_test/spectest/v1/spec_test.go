@@ -5,11 +5,11 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/tetratelabs/wazero"
-	"github.com/tetratelabs/wazero/api"
-	"github.com/tetratelabs/wazero/experimental/opt"
-	"github.com/tetratelabs/wazero/internal/integration_test/spectest"
-	"github.com/tetratelabs/wazero/internal/platform"
+	"github.com/AR1011/wazero"
+	"github.com/AR1011/wazero/api"
+	"github.com/AR1011/wazero/experimental/opt"
+	"github.com/AR1011/wazero/internal/integration_test/spectest"
+	"github.com/AR1011/wazero/internal/platform"
 )
 
 func TestCompiler(t *testing.T) {

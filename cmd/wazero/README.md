@@ -5,7 +5,7 @@ The wazero CLI can be used to execute a standalone WebAssembly binary.
 ### Installation
 
 ```bash
-$ go install github.com/tetratelabs/wazero/cmd/wazero@latest
+$ go install github.com/AR1011/wazero/cmd/wazero@latest
 ```
 
 ### Usage
@@ -19,7 +19,6 @@ wazero run calc.wasm 1 + 2
 
 In addition to arguments, the WebAssembly binary has access to stdout, stderr,
 and stdin.
-
 
 ### Docker / Podman
 

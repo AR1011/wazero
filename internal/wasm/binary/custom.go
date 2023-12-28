@@ -3,7 +3,7 @@ package binary
 import (
 	"bytes"
 
-	"github.com/tetratelabs/wazero/internal/wasm"
+	"github.com/AR1011/wazero/internal/wasm"
 )
 
 // decodeCustomSection deserializes the data **not** associated with the "name" key in SectionIDCustom.

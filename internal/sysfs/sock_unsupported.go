@@ -5,8 +5,8 @@ package sysfs
 import (
 	"net"
 
-	"github.com/tetratelabs/wazero/experimental/sys"
-	socketapi "github.com/tetratelabs/wazero/internal/sock"
+	"github.com/AR1011/wazero/experimental/sys"
+	socketapi "github.com/AR1011/wazero/internal/sock"
 )
 
 // MSG_PEEK is a filler value.

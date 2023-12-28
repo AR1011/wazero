@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/tetratelabs/wazero/api"
-	"github.com/tetratelabs/wazero/internal/leb128"
-	"github.com/tetratelabs/wazero/internal/testing/require"
+	"github.com/AR1011/wazero/api"
+	"github.com/AR1011/wazero/internal/leb128"
+	"github.com/AR1011/wazero/internal/testing/require"
 )
 
 func TestModule_ValidateFunction_validateFunctionWithMaxStackValues(t *testing.T) {

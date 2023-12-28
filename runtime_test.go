@@ -8,15 +8,15 @@ import (
 	"testing"
 	"time"
 
-	"github.com/tetratelabs/wazero/api"
-	"github.com/tetratelabs/wazero/experimental"
-	"github.com/tetratelabs/wazero/internal/filecache"
-	"github.com/tetratelabs/wazero/internal/leb128"
-	"github.com/tetratelabs/wazero/internal/platform"
-	"github.com/tetratelabs/wazero/internal/testing/binaryencoding"
-	"github.com/tetratelabs/wazero/internal/testing/require"
-	"github.com/tetratelabs/wazero/internal/wasm"
-	"github.com/tetratelabs/wazero/sys"
+	"github.com/AR1011/wazero/api"
+	"github.com/AR1011/wazero/experimental"
+	"github.com/AR1011/wazero/internal/filecache"
+	"github.com/AR1011/wazero/internal/leb128"
+	"github.com/AR1011/wazero/internal/platform"
+	"github.com/AR1011/wazero/internal/testing/binaryencoding"
+	"github.com/AR1011/wazero/internal/testing/require"
+	"github.com/AR1011/wazero/internal/wasm"
+	"github.com/AR1011/wazero/sys"
 )
 
 var (

@@ -5,11 +5,11 @@ import (
 	"path"
 	"testing"
 
-	"github.com/tetratelabs/wazero"
-	"github.com/tetratelabs/wazero/internal/fstest"
-	"github.com/tetratelabs/wazero/internal/gojs/config"
-	"github.com/tetratelabs/wazero/internal/platform"
-	"github.com/tetratelabs/wazero/internal/testing/require"
+	"github.com/AR1011/wazero"
+	"github.com/AR1011/wazero/internal/fstest"
+	"github.com/AR1011/wazero/internal/gojs/config"
+	"github.com/AR1011/wazero/internal/platform"
+	"github.com/AR1011/wazero/internal/testing/require"
 )
 
 func Test_fs(t *testing.T) {

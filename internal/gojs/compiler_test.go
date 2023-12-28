@@ -16,13 +16,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/tetratelabs/wazero"
-	"github.com/tetratelabs/wazero/experimental"
-	"github.com/tetratelabs/wazero/experimental/gojs"
-	"github.com/tetratelabs/wazero/internal/fstest"
-	internalgojs "github.com/tetratelabs/wazero/internal/gojs"
-	"github.com/tetratelabs/wazero/internal/gojs/config"
-	"github.com/tetratelabs/wazero/internal/gojs/run"
+	"github.com/AR1011/wazero"
+	"github.com/AR1011/wazero/experimental"
+	"github.com/AR1011/wazero/experimental/gojs"
+	"github.com/AR1011/wazero/internal/fstest"
+	internalgojs "github.com/AR1011/wazero/internal/gojs"
+	"github.com/AR1011/wazero/internal/gojs/config"
+	"github.com/AR1011/wazero/internal/gojs/run"
 )
 
 type newConfig func(moduleConfig wazero.ModuleConfig) (wazero.ModuleConfig, *config.Config)

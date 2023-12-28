@@ -6,7 +6,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/tetratelabs/wazero/api"
+	"github.com/AR1011/wazero/api"
 )
 
 func TestNewFunction(t *testing.T) {

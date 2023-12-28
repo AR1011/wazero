@@ -20,7 +20,7 @@ main_packages := $(sort $(foreach f,$(dir $(main_sources)),$(if $(findstring ./,
 
 go_test_options ?= -timeout 300s
 
-ensureCompilerFastest := -ldflags '-X github.com/tetratelabs/wazero/internal/integration_test/vs.ensureCompilerFastest=true'
+ensureCompilerFastest := -ldflags '-X github.com/AR1011/wazero/internal/integration_test/vs.ensureCompilerFastest=true'
 .PHONY: bench
 bench:
 	@go test -run=NONE -benchmem -bench=. ./internal/engine/compiler/...
@@ -202,7 +202,7 @@ lint: $(golangci_lint_path)
 .PHONY: format
 format:
 	@go run $(gofumpt) -l -w .
-	@go run $(gosimports) -local github.com/tetratelabs/ -w $(shell find . -name '*.go' -type f)
+	@go run $(gosimports) -local github.com/AR1011/ -w $(shell find . -name '*.go' -type f)
 	@go run $(asmfmt) -w $(shell find . -name '*.s' -type f)
 
 .PHONY: check  # Pre-flight check for pull requests
@@ -301,7 +301,7 @@ define go-build
 	@echo "building $1"
 	@# $(go:go=) removes the trailing 'go', so we can insert cross-build variables
 	@$(go:go=) CGO_ENABLED=0 GOOS=$(call go-os,$1) GOARCH=$(call go-arch,$1) go build \
-		-ldflags "-s -w -X github.com/tetratelabs/wazero/internal/version.version=$(VERSION)" \
+		-ldflags "-s -w -X github.com/AR1011/wazero/internal/version.version=$(VERSION)" \
 		-o $1 $2 ./cmd/wazero
 	@echo build "ok"
 endef

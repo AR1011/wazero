@@ -5,13 +5,13 @@ import (
 	_ "embed"
 	"testing"
 
-	"github.com/tetratelabs/wazero"
-	"github.com/tetratelabs/wazero/api"
-	"github.com/tetratelabs/wazero/experimental"
-	"github.com/tetratelabs/wazero/experimental/wazerotest"
-	"github.com/tetratelabs/wazero/internal/testing/binaryencoding"
-	"github.com/tetratelabs/wazero/internal/testing/require"
-	"github.com/tetratelabs/wazero/internal/wasm"
+	"github.com/AR1011/wazero"
+	"github.com/AR1011/wazero/api"
+	"github.com/AR1011/wazero/experimental"
+	"github.com/AR1011/wazero/experimental/wazerotest"
+	"github.com/AR1011/wazero/internal/testing/binaryencoding"
+	"github.com/AR1011/wazero/internal/testing/require"
+	"github.com/AR1011/wazero/internal/wasm"
 )
 
 // compile-time check to ensure recorder implements FunctionListenerFactory

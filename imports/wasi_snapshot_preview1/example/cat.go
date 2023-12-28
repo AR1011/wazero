@@ -8,9 +8,9 @@ import (
 	"log"
 	"os"
 
-	"github.com/tetratelabs/wazero"
-	"github.com/tetratelabs/wazero/imports/wasi_snapshot_preview1"
-	"github.com/tetratelabs/wazero/sys"
+	"github.com/AR1011/wazero"
+	"github.com/AR1011/wazero/imports/wasi_snapshot_preview1"
+	"github.com/AR1011/wazero/sys"
 )
 
 // catFS is an embedded filesystem limited to test.txt

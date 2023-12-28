@@ -4,10 +4,10 @@ import (
 	"context"
 	"io"
 
-	"github.com/tetratelabs/wazero/api"
-	"github.com/tetratelabs/wazero/experimental/sys"
-	"github.com/tetratelabs/wazero/internal/wasip1"
-	"github.com/tetratelabs/wazero/internal/wasm"
+	"github.com/AR1011/wazero/api"
+	"github.com/AR1011/wazero/experimental/sys"
+	"github.com/AR1011/wazero/internal/wasip1"
+	"github.com/AR1011/wazero/internal/wasm"
 )
 
 // randomGet is the WASI function named RandomGetName which writes random

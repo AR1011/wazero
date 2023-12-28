@@ -10,11 +10,11 @@ import (
 	"testing"
 	gofstest "testing/fstest"
 
-	experimentalsys "github.com/tetratelabs/wazero/experimental/sys"
-	"github.com/tetratelabs/wazero/internal/fsapi"
-	"github.com/tetratelabs/wazero/internal/platform"
-	"github.com/tetratelabs/wazero/internal/testing/require"
-	"github.com/tetratelabs/wazero/sys"
+	experimentalsys "github.com/AR1011/wazero/experimental/sys"
+	"github.com/AR1011/wazero/internal/fsapi"
+	"github.com/AR1011/wazero/internal/platform"
+	"github.com/AR1011/wazero/internal/testing/require"
+	"github.com/AR1011/wazero/sys"
 )
 
 //go:embed file_test.go

@@ -3,7 +3,7 @@ package gojs
 import (
 	"io"
 
-	"github.com/tetratelabs/wazero/experimental/sys"
+	"github.com/AR1011/wazero/experimental/sys"
 )
 
 // Errno is a (GOARCH=wasm) error, which must match a key in mapJSError.

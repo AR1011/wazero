@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/tetratelabs/wazero/api"
-	"github.com/tetratelabs/wazero/internal/internalapi"
+	"github.com/AR1011/wazero/api"
+	"github.com/AR1011/wazero/internal/internalapi"
 )
 
 // LookupFunction looks up the table by the given index, and returns the api.Function implementation if found,

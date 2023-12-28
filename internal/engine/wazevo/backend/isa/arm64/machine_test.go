@@ -3,9 +3,9 @@ package arm64
 import (
 	"testing"
 
-	"github.com/tetratelabs/wazero/internal/engine/wazevo/backend/regalloc"
-	"github.com/tetratelabs/wazero/internal/engine/wazevo/wazevoapi"
-	"github.com/tetratelabs/wazero/internal/testing/require"
+	"github.com/AR1011/wazero/internal/engine/wazevo/backend/regalloc"
+	"github.com/AR1011/wazero/internal/engine/wazevo/wazevoapi"
+	"github.com/AR1011/wazero/internal/testing/require"
 )
 
 func TestMachine_insertAtHead(t *testing.T) {

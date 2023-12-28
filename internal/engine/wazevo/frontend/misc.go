@@ -1,8 +1,8 @@
 package frontend
 
 import (
-	"github.com/tetratelabs/wazero/internal/engine/wazevo/ssa"
-	"github.com/tetratelabs/wazero/internal/wasm"
+	"github.com/AR1011/wazero/internal/engine/wazevo/ssa"
+	"github.com/AR1011/wazero/internal/wasm"
 )
 
 func FunctionIndexToFuncRef(idx wasm.Index) ssa.FuncRef {

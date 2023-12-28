@@ -2,22 +2,22 @@ name: Test
 on:
   pull_request:
     branches: [main]
-    paths-ignore:  # ignore docs as they are built with Netlify.
-      - '**/*.md'
-      - 'site/**'
-      - 'netlify.toml'
+    paths-ignore: # ignore docs as they are built with Netlify.
+      - "**/*.md"
+      - "site/**"
+      - "netlify.toml"
   push:
     branches: [main]
-    paths-ignore:  # ignore docs as they are built with Netlify.
-      - '**/*.md'
-      - 'site/**'
-      - 'netlify.toml'
+    paths-ignore: # ignore docs as they are built with Netlify.
+      - "**/*.md"
+      - "site/**"
+      - "netlify.toml"
 
-env:  # Update this prior to requiring a higher minor version in go.mod
-  GO_VERSION: "1.21"  # 1.xx == latest patch of 1.xx
+env: # Update this prior to requiring a higher minor version in go.mod
+  GO_VERSION: "1.21" # 1.xx == latest patch of 1.xx
 
 defaults:
-  run:  # use bash for all operating systems unless overridden
+  run: # use bash for all operating systems unless overridden
     shell: bash
 
 concurrency:
@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install latest wast2json
-        run: |  # Needed for build.spectest. wabt includes wast2json.
+        run: | # Needed for build.spectest. wabt includes wast2json.
           wabt_version=1.0.33
           wabt_url=https://github.com/WebAssembly/wabt/releases/download/${wabt_version}/wabt-${wabt_version}-ubuntu.tar.gz
           curl -sSL ${wabt_url} | tar --strip-components 2 -C /usr/local/bin -xzf - wabt-${wabt_version}/bin/wast2json
@@ -40,7 +40,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - uses: actions/setup-go@v4
-        with:  # not cache: true as we also need to cache golint
+        with: # not cache: true as we also need to cache golint
           cache: false
           go-version: ${{ env.GO_VERSION }}
 
@@ -61,15 +61,14 @@ jobs:
     name: amd64, ${{ matrix.os }}, Go-${{ matrix.go-version }}
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: false  # don't fail fast as sometimes failures are arch/OS specific
-      matrix:  # Use versions consistent with wazero's Go support policy.
+      fail-fast: false # don't fail fast as sometimes failures are arch/OS specific
+      matrix: # Use versions consistent with wazero's Go support policy.
         os: [ubuntu-22.04, macos-12, windows-2022]
         go-version:
-          - "1.21"  # Current Go version
-          - "1.19"  # Floor Go version of wazero (current - 2)
+          - "1.21" # Current Go version
+          - "1.19" # Floor Go version of wazero (current - 2)
 
     steps:
-
       - uses: actions/checkout@v3
 
       - uses: actions/setup-go@v4
@@ -89,11 +88,11 @@ jobs:
       # Since -short is not added in the scratch tests, all the tests are run in CI in practice.
       - run: make test go_test_options='-timeout 10m -race -short'
 
-      - name: "Generate coverage report"  # only once (not per OS)
+      - name: "Generate coverage report" # only once (not per OS)
         if: runner.os == 'Linux'
         run: make coverage
 
-      - name: "Upload coverage report"  # only on main push and only once (not per OS)
+      - name: "Upload coverage report" # only on main push and only once (not per OS)
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && runner.os == 'Linux'
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
@@ -103,18 +102,17 @@ jobs:
     name: ${{ matrix.arch }}, Linux (scratch), Go-${{ matrix.go-version }}
     runs-on: ubuntu-22.04
     strategy:
-      fail-fast: false  # don't fail fast as sometimes failures are arch/OS specific
-      matrix:  # Use versions consistent with wazero's Go support policy.
+      fail-fast: false # don't fail fast as sometimes failures are arch/OS specific
+      matrix: # Use versions consistent with wazero's Go support policy.
         go-version:
-          - "1.21"  # Current Go version
-          - "1.19"  # Floor Go version of wazero (current - 2)
+          - "1.21" # Current Go version
+          - "1.19" # Floor Go version of wazero (current - 2)
         arch:
           - "amd64"
           - "arm64"
           - "riscv64"
 
     steps:
-
       - uses: actions/checkout@v3
 
       - uses: actions/setup-go@v4
@@ -133,8 +131,8 @@ jobs:
       - name: Set up QEMU
         if: ${{ matrix.arch != 'amd64' }}
         uses: docker/setup-qemu-action@v2
-        with:  # Avoid docker.io rate-limits; built with internal-images.yml
-          image: ghcr.io/tetratelabs/wazero/internal-binfmt
+        with: # Avoid docker.io rate-limits; built with internal-images.yml
+          image: ghcr.io/AR1011/wazero/internal-binfmt
           platforms: ${{ matrix.arch }}
 
       - name: Build scratch container

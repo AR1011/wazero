@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"math"
 
-	"github.com/tetratelabs/wazero/api"
-	"github.com/tetratelabs/wazero/internal/leb128"
+	"github.com/AR1011/wazero/api"
+	"github.com/AR1011/wazero/internal/leb128"
 )
 
 // Table describes the limits of elements and its type in a table.

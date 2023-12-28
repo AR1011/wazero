@@ -4,9 +4,9 @@ import (
 	"encoding/binary"
 	"errors"
 
-	"github.com/tetratelabs/wazero/api"
-	"github.com/tetratelabs/wazero/internal/gojs/util"
-	"github.com/tetratelabs/wazero/internal/wasm"
+	"github.com/AR1011/wazero/api"
+	"github.com/AR1011/wazero/internal/gojs/util"
+	"github.com/AR1011/wazero/internal/wasm"
 )
 
 // Constants about memory layout. See REFERENCE.md

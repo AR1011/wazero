@@ -7,10 +7,10 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/tetratelabs/wazero/api"
-	"github.com/tetratelabs/wazero/internal/testing/require"
-	"github.com/tetratelabs/wazero/internal/wasm"
-	"github.com/tetratelabs/wazero/internal/wazeroir"
+	"github.com/AR1011/wazero/api"
+	"github.com/AR1011/wazero/internal/testing/require"
+	"github.com/AR1011/wazero/internal/wasm"
+	"github.com/AR1011/wazero/internal/wazeroir"
 )
 
 // testCtx is an arbitrary, non-default context. Non-nil also prevents linter errors.

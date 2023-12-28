@@ -1,22 +1,22 @@
 ## wazero imports
 
-Packages in this directory implement the *host* imports needed for specific
+Packages in this directory implement the _host_ imports needed for specific
 languages or shared compiler toolchains.
 
-* [AssemblyScript](assemblyscript) e.g. `asc X.ts --debug -b none -o X.wasm`
-* [Emscripten](emscripten) e.g. `em++ ... -s STANDALONE_WASM -o X.wasm X.cc`
-* [WASI](wasi_snapshot_preview1) e.g. `tinygo build -o X.wasm -target=wasi X.go`
+- [AssemblyScript](assemblyscript) e.g. `asc X.ts --debug -b none -o X.wasm`
+- [Emscripten](emscripten) e.g. `em++ ... -s STANDALONE_WASM -o X.wasm X.cc`
+- [WASI](wasi_snapshot_preview1) e.g. `tinygo build -o X.wasm -target=wasi X.go`
 
 Note: You may not see a language listed here because it either works without
 host imports, or it uses WASI. Refer to https://wazero.io/languages/ for more.
 
-Please [open an issue](https://github.com/tetratelabs/wazero/issues/new) if you
+Please [open an issue](https://github.com/AR1011/wazero/issues/new) if you
 would like to see support for another compiled language or toolchain.
 
 ## Overview
 
-WebAssembly has a virtual machine architecture where the *host* is the process
-embedding wazero and the *guest* is a program compiled into the WebAssembly
+WebAssembly has a virtual machine architecture where the _host_ is the process
+embedding wazero and the _guest_ is a program compiled into the WebAssembly
 Binary Format, also known as Wasm (`%.wasm`).
 
 The only features that work by default are computational in nature, and the

@@ -3,8 +3,8 @@ package wazeroir
 import (
 	"testing"
 
-	"github.com/tetratelabs/wazero/internal/testing/require"
-	"github.com/tetratelabs/wazero/internal/wasm"
+	"github.com/AR1011/wazero/internal/testing/require"
+	"github.com/AR1011/wazero/internal/wasm"
 )
 
 func TestCompiler_wasmOpcodeSignature(t *testing.T) {

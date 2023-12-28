@@ -10,12 +10,12 @@ import (
 	"testing"
 	"testing/iotest"
 
-	"github.com/tetratelabs/wazero/internal/asm"
-	"github.com/tetratelabs/wazero/internal/filecache"
-	"github.com/tetratelabs/wazero/internal/testing/require"
-	"github.com/tetratelabs/wazero/internal/u32"
-	"github.com/tetratelabs/wazero/internal/u64"
-	"github.com/tetratelabs/wazero/internal/wasm"
+	"github.com/AR1011/wazero/internal/asm"
+	"github.com/AR1011/wazero/internal/filecache"
+	"github.com/AR1011/wazero/internal/testing/require"
+	"github.com/AR1011/wazero/internal/u32"
+	"github.com/AR1011/wazero/internal/u64"
+	"github.com/AR1011/wazero/internal/wasm"
 )
 
 var testVersion = ""

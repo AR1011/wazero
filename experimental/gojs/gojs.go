@@ -17,12 +17,12 @@ import (
 	"context"
 	"errors"
 
-	"github.com/tetratelabs/wazero"
-	"github.com/tetratelabs/wazero/api"
-	"github.com/tetratelabs/wazero/internal/gojs"
-	internalconfig "github.com/tetratelabs/wazero/internal/gojs/config"
-	"github.com/tetratelabs/wazero/internal/gojs/run"
-	"github.com/tetratelabs/wazero/internal/wasm"
+	"github.com/AR1011/wazero"
+	"github.com/AR1011/wazero/api"
+	"github.com/AR1011/wazero/internal/gojs"
+	internalconfig "github.com/AR1011/wazero/internal/gojs/config"
+	"github.com/AR1011/wazero/internal/gojs/run"
+	"github.com/AR1011/wazero/internal/wasm"
 )
 
 // MustInstantiate calls Instantiate or panics on error.

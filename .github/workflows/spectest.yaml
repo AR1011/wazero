@@ -2,19 +2,19 @@ name: WebAssembly Core Specification Test
 on:
   pull_request:
     branches: [main]
-    paths-ignore:  # ignore docs as they are built with Netlify.
-      - '**/*.md'
-      - 'site/**'
-      - 'netlify.toml'
+    paths-ignore: # ignore docs as they are built with Netlify.
+      - "**/*.md"
+      - "site/**"
+      - "netlify.toml"
   push:
     branches: [main]
-    paths-ignore:  # ignore docs as they are built with Netlify.
-      - '**/*.md'
-      - 'site/**'
-      - 'netlify.toml'
+    paths-ignore: # ignore docs as they are built with Netlify.
+      - "**/*.md"
+      - "site/**"
+      - "netlify.toml"
 
 defaults:
-  run:  # use bash for all operating systems unless overridden
+  run: # use bash for all operating systems unless overridden
     shell: bash
 
 concurrency:
@@ -27,11 +27,11 @@ jobs:
     name: ${{ matrix.spec-version }} - linux/amd64, Go-${{ matrix.go-version }}
     runs-on: ubuntu-22.04
     strategy:
-      fail-fast: false  # don't fail fast as sometimes failures are arch/OS specific
-      matrix:  # Use versions consistent with wazero's Go support policy.
+      fail-fast: false # don't fail fast as sometimes failures are arch/OS specific
+      matrix: # Use versions consistent with wazero's Go support policy.
         go-version:
-          - "1.21"  # Current Go version
-          - "1.19"  # Floor Go version of wazero (current - 2)
+          - "1.21" # Current Go version
+          - "1.19" # Floor Go version of wazero (current - 2)
         spec-version:
           - "v1"
           - "v2"
@@ -49,11 +49,11 @@ jobs:
     name: ${{ matrix.spec-version }} / ${{ matrix.arch }}, Go-${{ matrix.go-version }}
     runs-on: ubuntu-22.04
     strategy:
-      fail-fast: false  # don't fail fast as sometimes failures are arch/OS specific
-      matrix:  # Use versions consistent with wazero's Go support policy.
+      fail-fast: false # don't fail fast as sometimes failures are arch/OS specific
+      matrix: # Use versions consistent with wazero's Go support policy.
         go-version:
-          - "1.21"  # Current Go version
-          - "1.19"  # Floor Go version of wazero (current - 2)
+          - "1.21" # Current Go version
+          - "1.19" # Floor Go version of wazero (current - 2)
         arch:
           - "arm64"
           - "riscv64"
@@ -77,8 +77,8 @@ jobs:
       - name: Set up QEMU
         if: ${{ matrix.arch != 'amd64' }}
         uses: docker/setup-qemu-action@v2
-        with:  # Avoid docker.io rate-limits; built with internal-images.yml
-          image: ghcr.io/tetratelabs/wazero/internal-binfmt
+        with: # Avoid docker.io rate-limits; built with internal-images.yml
+          image: ghcr.io/AR1011/wazero/internal-binfmt
           platforms: ${{ matrix.arch }}
 
       - name: Build scratch container

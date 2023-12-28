@@ -7,11 +7,11 @@ import (
 	"io"
 	"runtime"
 
-	"github.com/tetratelabs/wazero/experimental"
-	"github.com/tetratelabs/wazero/internal/platform"
-	"github.com/tetratelabs/wazero/internal/u32"
-	"github.com/tetratelabs/wazero/internal/u64"
-	"github.com/tetratelabs/wazero/internal/wasm"
+	"github.com/AR1011/wazero/experimental"
+	"github.com/AR1011/wazero/internal/platform"
+	"github.com/AR1011/wazero/internal/u32"
+	"github.com/AR1011/wazero/internal/u64"
+	"github.com/AR1011/wazero/internal/wasm"
 )
 
 func (e *engine) deleteCompiledModule(module *wasm.Module) {

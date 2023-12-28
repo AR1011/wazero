@@ -1,4 +1,4 @@
-module github.com/tetratelabs/wazero
+module github.com/AR1011/wazero
 
 // Floor Go version of wazero (current - 2)
 go 1.19

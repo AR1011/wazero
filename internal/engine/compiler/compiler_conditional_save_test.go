@@ -3,10 +3,10 @@ package compiler
 import (
 	"testing"
 
-	"github.com/tetratelabs/wazero/internal/asm"
-	"github.com/tetratelabs/wazero/internal/testing/require"
-	"github.com/tetratelabs/wazero/internal/wasm"
-	"github.com/tetratelabs/wazero/internal/wazeroir"
+	"github.com/AR1011/wazero/internal/asm"
+	"github.com/AR1011/wazero/internal/testing/require"
+	"github.com/AR1011/wazero/internal/wasm"
+	"github.com/AR1011/wazero/internal/wazeroir"
 )
 
 // TestCompiler_conditional_value_saving ensure that saving conditional register works correctly even if there's

@@ -7,9 +7,9 @@ title = "Rust"
 Beginning with 1.30 [Rust][1] can generate `%.wasm` files instead of
 architecture-specific binaries through three targets:
 
-* `wasm32-unknown-emscripten`: mostly for browser (JavaScript) use.
-* `wasm32-unknown-unknown`: for standalone use in or outside the browser.
-* `wasm32-wasi`: for use outside the browser.
+- `wasm32-unknown-emscripten`: mostly for browser (JavaScript) use.
+- `wasm32-unknown-unknown`: for standalone use in or outside the browser.
+- `wasm32-wasi`: for use outside the browser.
 
 This document is maintained by wazero, which is a WebAssembly runtime that
 embeds in Go applications. Hence, our notes focus on targets used outside the
@@ -38,6 +38,7 @@ pub extern "C" fn add(x: i32, y: i32) -> i32 {
 ```
 
 The following is the minimal command to build a Wasm file.
+
 ```bash
 rustc -o lib.wasm --target wasm32-unknown-unknown --crate-type cdylib lib.rs
 ```
@@ -94,12 +95,14 @@ write JSON of a given length before invoking an exported function to parse it.
 
 The below snippet is a realistic example of a function exported to the host,
 who needs to allocate memory first.
+
 ```rust
 #[no_mangle]
 pub unsafe extern "C" fn configure(ptr: u32, len: u32) {
   let json = &ptr_to_string(ptr, len);
 }
 ```
+
 Note: WebAssembly uses 32-bit memory addressing, so a `uintptr` is 32-bits.
 
 The general flow is that the host allocates memory by calling an allocation
@@ -113,12 +116,14 @@ Note: wazero includes an [example project][9] that shows this.
 
 To allow the host to allocate memory, you need to define your own `malloc` and
 `free` functions:
+
 ```webassembly
 (func (export "malloc") (param $size i32) (result (;$ptr;) i32))
 (func (export "free") (param $ptr i32) (param $size i32))
 ```
 
 The below implements this in Rustlang:
+
 ```rust
 use std::mem::MaybeUninit;
 use std::slice;
@@ -161,6 +166,7 @@ the `wasm32-wasi` target. This imports host functions in
 
 For example, `rustc -o hello.wasm --target wasm32-wasi hello.rs` compiles the
 below `main` function into a WASI function exported as `_start`.
+
 ```rust
 fn main() {
   println!("Hello World!");
@@ -187,11 +193,13 @@ Those with `%.wasm` binary size constraints can change their source or set
 `rustc` flags to reduce it.
 
 Source changes:
-* [wee_alloc][12]: Smaller, WebAssembly-tuned memory allocator.
+
+- [wee_alloc][12]: Smaller, WebAssembly-tuned memory allocator.
 
 [`rustc` flags][13]:
-* `-C debuginfo=0`: Strips DWARF, but retains the WebAssembly name section.
-* `-C opt-level=3`: Includes all size optimizations.
+
+- `-C debuginfo=0`: Strips DWARF, but retains the WebAssembly name section.
+- `-C opt-level=3`: Includes all size optimizations.
 
 Those using cargo should also use the `--release` flag, which corresponds to
 `rustc -C debuginfo=0 -C opt-level=3`.
@@ -205,12 +213,14 @@ Those with runtime performance constraints can change their source or set
 `rustc` flags to improve it.
 
 [`rustc` flags][13]:
-* `-C opt-level=2`: Enable additional optimizations, frequently at the expense
+
+- `-C opt-level=2`: Enable additional optimizations, frequently at the expense
   of binary size.
 
 ## Frequently Asked Questions
 
 ### Why is my `%.wasm` binary so big?
+
 Rust defaults can be overridden for those who can sacrifice features or
 performance for a [smaller binary](#binary-size). After that, tuning your
 source code may reduce binary size further.
@@ -218,12 +228,12 @@ source code may reduce binary size further.
 [1]: https://www.rust-lang.org/tools/install
 [4]: https://docs.rust-embedded.org/book/interoperability/rust-with-c.html#no_mangle
 [5]: https://rustwasm.github.io/docs/book
-[6]: https://github.com/tetratelabs/wazero/tree/main/site/content/languages/rust.md
-[7]: https://github.com/tetratelabs/wazero/stargazers
+[6]: https://github.com/AR1011/wazero/tree/main/site/content/languages/rust.md
+[7]: https://github.com/AR1011/wazero/stargazers
 [8]: https://rustwasm.github.io/docs/book/reference/which-crates-work-with-wasm.html
-[9]: https://github.com/tetratelabs/wazero/tree/main/examples/allocation/rust
-[10]: https://github.com/tetratelabs/wazero/tree/main/imports/wasi_snapshot_preview1/example
-[11]: https://github.com/tetratelabs/wazero/tree/main/imports/wasi_snapshot_preview1/example/testdata/cargo-wasi
+[9]: https://github.com/AR1011/wazero/tree/main/examples/allocation/rust
+[10]: https://github.com/AR1011/wazero/tree/main/imports/wasi_snapshot_preview1/example
+[11]: https://github.com/AR1011/wazero/tree/main/imports/wasi_snapshot_preview1/example/testdata/cargo-wasi
 [12]: https://github.com/rustwasm/wee_alloc
 [13]: https://doc.rust-lang.org/cargo/reference/profiles.html#profile-settings
 [14]: https://github.com/bytecodealliance/cargo-wasi

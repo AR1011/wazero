@@ -3,7 +3,6 @@ title = "the _zero_ dependency _WebAssembly_ runtime for _Go developers_"
 layout = "home"
 +++
 
-
 **WebAssembly** is a way to safely run code compiled in other languages. Runtimes
 execute WebAssembly Modules (Wasm), which are most often binaries with a
 `.wasm` extension.
@@ -22,7 +21,7 @@ curl https://wazero.io/install.sh | sh
 **Embed wazero** in your Go project and extend any app
 
 ```go
-import "github.com/tetratelabs/wazero"
+import "github.com/AR1011/wazero"
 
 // ...
 
@@ -32,7 +31,7 @@ mod, _ := r.Instantiate(ctx, wasmAdd)
 res, _ := mod.ExportedFunction("add").Call(ctx, 1, 2)
 ```
 
------
+---
 
 ## Example
 
@@ -54,13 +53,14 @@ is [in use]({{< relref "/community/users.md" >}}) by many projects and
 production sites.
 
 You can get the latest version of wazero like this.
+
 ```bash
-go get github.com/tetratelabs/wazero@latest
+go get github.com/AR1011/wazero@latest
 ```
 
 Please give us a [star][4] if you end up using wazero!
 
-[1]: https://github.com/tetratelabs/wazero/blob/main/examples
-[2]: https://github.com/tetratelabs/wazero/blob/main/examples/basic
+[1]: https://github.com/AR1011/wazero/blob/main/examples
+[2]: https://github.com/AR1011/wazero/blob/main/examples/basic
 [3]: https://tetrate.io/blog/introducing-wazero-from-tetrate/
-[4]: https://github.com/tetratelabs/wazero/stargazers
+[4]: https://github.com/AR1011/wazero/stargazers

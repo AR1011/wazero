@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"math"
 
-	"github.com/tetratelabs/wazero/internal/internalapi"
+	"github.com/AR1011/wazero/internal/internalapi"
 )
 
 // ExternType classifies imports and exports with their respective types.

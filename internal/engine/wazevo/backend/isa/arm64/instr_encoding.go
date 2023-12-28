@@ -3,9 +3,9 @@ package arm64
 import (
 	"fmt"
 
-	"github.com/tetratelabs/wazero/internal/engine/wazevo/backend"
-	"github.com/tetratelabs/wazero/internal/engine/wazevo/backend/regalloc"
-	"github.com/tetratelabs/wazero/internal/engine/wazevo/wazevoapi"
+	"github.com/AR1011/wazero/internal/engine/wazevo/backend"
+	"github.com/AR1011/wazero/internal/engine/wazevo/backend/regalloc"
+	"github.com/AR1011/wazero/internal/engine/wazevo/wazevoapi"
 )
 
 // Encode implements backend.Machine Encode.

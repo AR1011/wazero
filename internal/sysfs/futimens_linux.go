@@ -5,7 +5,7 @@ import (
 	"unsafe"
 	_ "unsafe"
 
-	experimentalsys "github.com/tetratelabs/wazero/experimental/sys"
+	experimentalsys "github.com/AR1011/wazero/experimental/sys"
 )
 
 const (

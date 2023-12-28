@@ -4,9 +4,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/tetratelabs/wazero"
-	"github.com/tetratelabs/wazero/internal/gojs/config"
-	"github.com/tetratelabs/wazero/internal/testing/require"
+	"github.com/AR1011/wazero"
+	"github.com/AR1011/wazero/internal/gojs/config"
+	"github.com/AR1011/wazero/internal/testing/require"
 )
 
 func Test_process(t *testing.T) {

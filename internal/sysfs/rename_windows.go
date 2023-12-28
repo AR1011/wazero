@@ -4,7 +4,7 @@ import (
 	"os"
 	"syscall"
 
-	"github.com/tetratelabs/wazero/experimental/sys"
+	"github.com/AR1011/wazero/experimental/sys"
 )
 
 func rename(from, to string) sys.Errno {

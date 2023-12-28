@@ -3,7 +3,7 @@
 package sysfs
 
 import (
-	"github.com/tetratelabs/wazero/experimental/sys"
+	"github.com/AR1011/wazero/experimental/sys"
 )
 
 func utimens(path string, atim, mtim int64) sys.Errno {

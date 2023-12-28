@@ -7,8 +7,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/tetratelabs/wazero/api"
-	"github.com/tetratelabs/wazero/internal/leb128"
+	"github.com/AR1011/wazero/api"
+	"github.com/AR1011/wazero/internal/leb128"
 )
 
 // The wazero specific limitation described at RATIONALE.md.

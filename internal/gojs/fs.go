@@ -4,14 +4,14 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/tetratelabs/wazero/api"
-	experimentalsys "github.com/tetratelabs/wazero/experimental/sys"
-	"github.com/tetratelabs/wazero/internal/gojs/custom"
-	"github.com/tetratelabs/wazero/internal/gojs/goos"
-	"github.com/tetratelabs/wazero/internal/gojs/util"
-	internalsys "github.com/tetratelabs/wazero/internal/sys"
-	"github.com/tetratelabs/wazero/internal/wasm"
-	"github.com/tetratelabs/wazero/sys"
+	"github.com/AR1011/wazero/api"
+	experimentalsys "github.com/AR1011/wazero/experimental/sys"
+	"github.com/AR1011/wazero/internal/gojs/custom"
+	"github.com/AR1011/wazero/internal/gojs/goos"
+	"github.com/AR1011/wazero/internal/gojs/util"
+	internalsys "github.com/AR1011/wazero/internal/sys"
+	"github.com/AR1011/wazero/internal/wasm"
+	"github.com/AR1011/wazero/sys"
 )
 
 var (

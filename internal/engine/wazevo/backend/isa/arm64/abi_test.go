@@ -3,10 +3,10 @@ package arm64
 import (
 	"testing"
 
-	"github.com/tetratelabs/wazero/internal/engine/wazevo/backend"
-	"github.com/tetratelabs/wazero/internal/engine/wazevo/backend/regalloc"
-	"github.com/tetratelabs/wazero/internal/engine/wazevo/ssa"
-	"github.com/tetratelabs/wazero/internal/testing/require"
+	"github.com/AR1011/wazero/internal/engine/wazevo/backend"
+	"github.com/AR1011/wazero/internal/engine/wazevo/backend/regalloc"
+	"github.com/AR1011/wazero/internal/engine/wazevo/ssa"
+	"github.com/AR1011/wazero/internal/testing/require"
 )
 
 func TestAbiImpl_init(t *testing.T) {

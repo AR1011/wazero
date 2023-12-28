@@ -1,9 +1,9 @@
 package sys
 
 import (
-	experimentalsys "github.com/tetratelabs/wazero/experimental/sys"
-	"github.com/tetratelabs/wazero/internal/fsapi"
-	"github.com/tetratelabs/wazero/sys"
+	experimentalsys "github.com/AR1011/wazero/experimental/sys"
+	"github.com/AR1011/wazero/internal/fsapi"
+	"github.com/AR1011/wazero/sys"
 )
 
 // compile-time check to ensure lazyDir implements sys.File.

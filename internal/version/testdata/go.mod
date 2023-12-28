@@ -1,7 +1,7 @@
-module github.com/tetratelabs/wazero/internal/version/testdata
+module github.com/AR1011/wazero/internal/version/testdata
 
 go 1.19
 
-require github.com/tetratelabs/wazero v0.0.0-20220818123113-1948909ec0b1 // indirect
+require github.com/AR1011/wazero v0.0.0-20220818123113-1948909ec0b1 // indirect
 
-replace github.com/tetratelabs/wazero => ../../..
+replace github.com/AR1011/wazero => ../../..

@@ -16,7 +16,7 @@ import (
 	"unicode"
 	"unicode/utf8"
 
-	"github.com/tetratelabs/wazero/experimental/sys"
+	"github.com/AR1011/wazero/experimental/sys"
 )
 
 // TestingT is an interface wrapper of functions used in TestingT

@@ -3,8 +3,8 @@ package arm64
 // This file implements the interfaces required for register allocations. See regalloc/api.go.
 
 import (
-	"github.com/tetratelabs/wazero/internal/engine/wazevo/backend/regalloc"
-	"github.com/tetratelabs/wazero/internal/engine/wazevo/ssa"
+	"github.com/AR1011/wazero/internal/engine/wazevo/backend/regalloc"
+	"github.com/AR1011/wazero/internal/engine/wazevo/ssa"
 )
 
 type (

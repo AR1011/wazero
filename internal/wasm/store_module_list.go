@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/tetratelabs/wazero/api"
+	"github.com/AR1011/wazero/api"
 )
 
 // deleteModule makes the moduleName available for instantiation again.

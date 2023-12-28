@@ -4,7 +4,7 @@ import (
 	"io"
 	"testing"
 
-	"github.com/tetratelabs/wazero/experimental/sys"
+	"github.com/AR1011/wazero/experimental/sys"
 )
 
 func TestToErrno(t *testing.T) {

@@ -8,13 +8,13 @@ import (
 	"fmt"
 	"math"
 
-	"github.com/tetratelabs/wazero/internal/asm"
-	"github.com/tetratelabs/wazero/internal/asm/amd64"
-	"github.com/tetratelabs/wazero/internal/platform"
-	"github.com/tetratelabs/wazero/internal/u32"
-	"github.com/tetratelabs/wazero/internal/u64"
-	"github.com/tetratelabs/wazero/internal/wasm"
-	"github.com/tetratelabs/wazero/internal/wazeroir"
+	"github.com/AR1011/wazero/internal/asm"
+	"github.com/AR1011/wazero/internal/asm/amd64"
+	"github.com/AR1011/wazero/internal/platform"
+	"github.com/AR1011/wazero/internal/u32"
+	"github.com/AR1011/wazero/internal/u64"
+	"github.com/AR1011/wazero/internal/wasm"
+	"github.com/AR1011/wazero/internal/wazeroir"
 )
 
 var (

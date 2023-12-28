@@ -1,8 +1,8 @@
 package compiler
 
 import (
-	"github.com/tetratelabs/wazero/internal/asm"
-	"github.com/tetratelabs/wazero/internal/asm/amd64"
+	"github.com/AR1011/wazero/internal/asm"
+	"github.com/AR1011/wazero/internal/asm/amd64"
 )
 
 // init initializes variables for the amd64 architecture

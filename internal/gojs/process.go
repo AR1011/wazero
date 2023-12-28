@@ -4,11 +4,11 @@ import (
 	"context"
 	"path"
 
-	"github.com/tetratelabs/wazero/api"
-	"github.com/tetratelabs/wazero/experimental/sys"
-	"github.com/tetratelabs/wazero/internal/gojs/custom"
-	"github.com/tetratelabs/wazero/internal/gojs/goos"
-	"github.com/tetratelabs/wazero/internal/gojs/util"
+	"github.com/AR1011/wazero/api"
+	"github.com/AR1011/wazero/experimental/sys"
+	"github.com/AR1011/wazero/internal/gojs/custom"
+	"github.com/AR1011/wazero/internal/gojs/goos"
+	"github.com/AR1011/wazero/internal/gojs/util"
 )
 
 // processState are the mutable fields of the current process.

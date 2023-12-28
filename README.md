@@ -1,13 +1,13 @@
 # wazero: the zero dependency WebAssembly runtime for Go developers
 
-[![WebAssembly Core Specification Test](https://github.com/tetratelabs/wazero/actions/workflows/spectest.yaml/badge.svg)](https://github.com/tetratelabs/wazero/actions/workflows/spectest.yaml) [![Go Reference](https://pkg.go.dev/badge/github.com/tetratelabs/wazero.svg)](https://pkg.go.dev/github.com/tetratelabs/wazero) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![WebAssembly Core Specification Test](https://github.com/AR1011/wazero/actions/workflows/spectest.yaml/badge.svg)](https://github.com/AR1011/wazero/actions/workflows/spectest.yaml) [![Go Reference](https://pkg.go.dev/badge/github.com/AR1011/wazero.svg)](https://pkg.go.dev/github.com/AR1011/wazero) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 WebAssembly is a way to safely run code compiled in other languages. Runtimes
 execute WebAssembly Modules (Wasm), which are most often binaries with a `.wasm`
 extension.
 
 wazero is a WebAssembly Core Specification [1.0][1] and [2.0][2] compliant
-runtime written in Go. It has *zero dependencies*, and doesn't rely on CGO.
+runtime written in Go. It has _zero dependencies_, and doesn't rely on CGO.
 This means you can run applications in other languages and still keep cross
 compilation.
 
@@ -25,17 +25,20 @@ There are two runtime configurations supported in wazero: _Compiler_ is default:
 
 By default, ex `wazero.NewRuntime(ctx)`, the Compiler is used if supported. You
 can also force the interpreter like so:
+
 ```go
 r := wazero.NewRuntimeWithConfig(ctx, wazero.NewRuntimeConfigInterpreter())
 ```
 
 ### Interpreter
+
 Interpreter is a naive interpreter-based implementation of Wasm virtual
 machine. Its implementation doesn't have any platform (GOARCH, GOOS) specific
 code, therefore _interpreter_ can be used for any compilation target available
 for Go (such as `riscv64`).
 
 ### Compiler
+
 Compiler compiles WebAssembly modules into machine code ahead of time (AOT),
 during `Runtime.CompileModule`. This means your WebAssembly functions execute
 natively at runtime. Compiler is faster than Interpreter, often by order of
@@ -49,9 +52,9 @@ Both runtimes pass WebAssembly Core [1.0][7] and [2.0][14] specification tests
 on supported platforms:
 
 |   Runtime   |                 Usage                  | amd64 | arm64 | others |
-|:-----------:|:--------------------------------------:|:-----:|:-----:|:------:|
-| Interpreter | `wazero.NewRuntimeConfigInterpreter()` |   ✅   |   ✅   |   ✅    |
-|  Compiler   |  `wazero.NewRuntimeConfigCompiler()`   |   ✅   |   ✅   |   ❌    |
+| :---------: | :------------------------------------: | :---: | :---: | :----: |
+| Interpreter | `wazero.NewRuntimeConfigInterpreter()` |  ✅   |  ✅   |   ✅   |
+|  Compiler   |  `wazero.NewRuntimeConfigCompiler()`   |  ✅   |  ✅   |   ❌   |
 
 ## Support Policy
 
@@ -70,8 +73,9 @@ happen with a minor version increment, e.g. 1.0.11 to 1.2.0. We also fix bugs
 or change internal details with a patch version, e.g. 1.0.0 to 1.0.1.
 
 You can get the latest version of wazero like this.
+
 ```bash
-go get github.com/tetratelabs/wazero@latest
+go get github.com/AR1011/wazero@latest
 ```
 
 Please give us a [star][17] if you end up using wazero!
@@ -100,12 +104,12 @@ system versions won't work.
 We currently test Linux (Ubuntu and scratch), MacOS and Windows as packaged by
 [GitHub Actions][11], as well compilation of 32-bit Linux and 64-bit FreeBSD.
 
-* Interpreter
-  * Linux is tested on amd64 (native) as well arm64 and riscv64 via emulation.
-  * MacOS and Windows are only tested on amd64.
-* Compiler
-  * Linux is tested on amd64 (native) as well arm64 via emulation.
-  * MacOS and Windows are only tested on amd64.
+- Interpreter
+  - Linux is tested on amd64 (native) as well arm64 and riscv64 via emulation.
+  - MacOS and Windows are only tested on amd64.
+- Compiler
+  - Linux is tested on amd64 (native) as well arm64 via emulation.
+  - MacOS and Windows are only tested on amd64.
 
 wazero has no dependencies and doesn't require CGO. This means it can also be
 embedded in an application that doesn't use an operating system. This is a main
@@ -114,7 +118,8 @@ differentiator between wazero and alternatives.
 We verify zero dependencies by running tests in Docker's [scratch image][12].
 This approach ensures compatibility with any parent image.
 
------
+---
+
 wazero is a registered trademark of Tetrate.io, Inc. in the United States and/or other countries
 
 [1]: https://www.w3.org/TR/2019/REC-wasm-core-1-20191205/
@@ -124,7 +129,7 @@ wazero is a registered trademark of Tetrate.io, Inc. in the United States and/or
 [6]: https://pkg.go.dev/golang.org/x/sys/unix
 [7]: https://github.com/WebAssembly/spec/tree/wg-1.0/test/core
 [8]: internal/engine/compiler/RATIONALE.md
-[9]: https://github.com/tetratelabs/wazero/issues/506
+[9]: https://github.com/AR1011/wazero/issues/506
 [10]: https://go.dev/doc/devel/release
 [11]: https://github.com/actions/virtual-environments
 [12]: https://docs.docker.com/develop/develop-images/baseimages/#create-a-simple-parent-image-using-scratch
@@ -132,4 +137,4 @@ wazero is a registered trademark of Tetrate.io, Inc. in the United States and/or
 [14]: https://github.com/WebAssembly/spec/tree/d39195773112a22b245ffbe864bab6d1182ccb06/test/core
 [15]: https://tetrate.io/blog/introducing-wazero-from-tetrate/
 [16]: https://wazero.io/community/users/
-[17]: https://github.com/tetratelabs/wazero/stargazers
+[17]: https://github.com/AR1011/wazero/stargazers

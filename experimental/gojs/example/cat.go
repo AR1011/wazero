@@ -8,8 +8,8 @@ import (
 	"testing/fstest"
 	"time"
 
-	"github.com/tetratelabs/wazero"
-	"github.com/tetratelabs/wazero/experimental/gojs"
+	"github.com/AR1011/wazero"
+	"github.com/AR1011/wazero/experimental/gojs"
 )
 
 // main invokes Wasm compiled via `GOOS=js GOARCH=wasm`, which writes an input

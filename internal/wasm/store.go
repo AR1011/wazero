@@ -7,12 +7,12 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/tetratelabs/wazero/api"
-	"github.com/tetratelabs/wazero/internal/close"
-	"github.com/tetratelabs/wazero/internal/internalapi"
-	"github.com/tetratelabs/wazero/internal/leb128"
-	internalsys "github.com/tetratelabs/wazero/internal/sys"
-	"github.com/tetratelabs/wazero/sys"
+	"github.com/AR1011/wazero/api"
+	"github.com/AR1011/wazero/internal/close"
+	"github.com/AR1011/wazero/internal/internalapi"
+	"github.com/AR1011/wazero/internal/leb128"
+	internalsys "github.com/AR1011/wazero/internal/sys"
+	"github.com/AR1011/wazero/sys"
 )
 
 // nameToModuleShrinkThreshold is the size the nameToModule map can grow to

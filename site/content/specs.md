@@ -32,12 +32,14 @@ In summary, we hope this section can guide you in terms of what wazero supports
 as well as how to classify a request for a feature we don't yet support.
 
 ### WebAssembly Core {#core}
+
 wazero conforms with tests defined alongside WebAssembly Core
 Specification [1.0][1] and [2.0][14].
 
 By default, the runtime configuration enables features in WebAssembly Core
 Specification, despite it not yet being a Web Standard (REC). You can select
 version 1.0 like so:
+
 ```go
 rConfig = wazero.NewRuntimeConfig().WithCoreFeatures(api.CoreFeaturesV1)
 ```
@@ -48,6 +50,7 @@ compile the text format into the binary format. In practice, the text format is
 too low level for most users, so delays here have limited impact.
 
 #### Post 2.0 Features
+
 Features regardless of W3C release are inventoried in the [Proposals][10].
 repository. wazero implements [Finished Proposals][11] based on user demand,
 using [wazero.RuntimeConfig][7] feature flags. As of late 2022, all finished
@@ -72,65 +75,66 @@ removed after the git tag. For example, [`proc_raise`][13] was removed and
 
 For all of these reasons, wazero will not implement all WASI features, just to
 complete the below chart. If you desire something not yet implemented, please
-[raise an issue](https://github.com/tetratelabs/wazero/issues/new) and include
+[raise an issue](https://github.com/AR1011/wazero/issues/new) and include
 your use case (ex which language you are using to compile, a.k.a. target Wasm).
 
 Notes:
- * AssemblyScript has its own ABI which can optionally use [wasi-shim][17]
- * C (via clang) supports the maximum WASI functions due to [wasi-libc][16]
- * Rust supports WASI via its [wasm32-wasi][18] target.
+
+- AssemblyScript has its own ABI which can optionally use [wasi-shim][17]
+- C (via clang) supports the maximum WASI functions due to [wasi-libc][16]
+- Rust supports WASI via its [wasm32-wasi][18] target.
 
 <details><summary>Click to see the full list of supported WASI functions</summary>
 <p>
 
 | Function                | Status |     Known Usage |
-|:------------------------|:------:|----------------:|
-| args_get                |   ✅    |          TinyGo |
-| args_sizes_get          |   ✅    |          TinyGo |
-| environ_get             |   ✅    |          TinyGo |
-| environ_sizes_get       |   ✅    |          TinyGo |
-| clock_res_get           |   ✅    |                 |
-| clock_time_get          |   ✅    |          TinyGo |
+| :---------------------- | :----: | --------------: |
+| args_get                |   ✅   |          TinyGo |
+| args_sizes_get          |   ✅   |          TinyGo |
+| environ_get             |   ✅   |          TinyGo |
+| environ_sizes_get       |   ✅   |          TinyGo |
+| clock_res_get           |   ✅   |                 |
+| clock_time_get          |   ✅   |          TinyGo |
 | fd_advise               |   👷   |                 |
-| fd_allocate             |   ✅    |            Rust |
-| fd_close                |   ✅    |          TinyGo |
-| fd_datasync             |   ✅    |            Rust |
-| fd_fdstat_get           |   ✅    |          TinyGo |
-| fd_fdstat_set_flags     |   ✅    |            Rust |
+| fd_allocate             |   ✅   |            Rust |
+| fd_close                |   ✅   |          TinyGo |
+| fd_datasync             |   ✅   |            Rust |
+| fd_fdstat_get           |   ✅   |          TinyGo |
+| fd_fdstat_set_flags     |   ✅   |            Rust |
 | fd_fdstat_set_rights    |   💀   |                 |
-| fd_filestat_get         |   ✅    |             Zig |
-| fd_filestat_set_size    |   ✅    |        Rust,Zig |
-| fd_filestat_set_times   |   ✅    |        Rust,Zig |
-| fd_pread                |   ✅    |             Zig |
-| fd_prestat_get          |   ✅    | Rust,TinyGo,Zig |
-| fd_prestat_dir_name     |   ✅    | Rust,TinyGo,Zig |
-| fd_pwrite               |   ✅    |        Rust,Zig |
-| fd_read                 |   ✅    | Rust,TinyGo,Zig |
-| fd_readdir              |   ✅    |        Rust,Zig |
-| fd_renumber             |   ✅    |            libc |
-| fd_seek                 |   ✅    |          TinyGo |
-| fd_sync                 |   ✅    |              Go |
-| fd_tell                 |   ✅    |            Rust |
-| fd_write                |   ✅    | Rust,TinyGo,Zig |
-| path_create_directory   |   ✅    | Rust,TinyGo,Zig |
-| path_filestat_get       |   ✅    | Rust,TinyGo,Zig |
-| path_filestat_set_times |   ✅    |       Rust,libc |
-| path_link               |   ✅    |        Rust,Zig |
-| path_open               |   ✅    | Rust,TinyGo,Zig |
-| path_readlink           |   ✅    |        Rust,Zig |
-| path_remove_directory   |   ✅    | Rust,TinyGo,Zig |
-| path_rename             |   ✅    | Rust,TinyGo,Zig |
-| path_symlink            |   ✅    |        Rust,Zig |
-| path_unlink_file        |   ✅    | Rust,TinyGo,Zig |
-| poll_oneoff             |   ✅    | Rust,TinyGo,Zig |
-| proc_exit               |   ✅    | Rust,TinyGo,Zig |
+| fd_filestat_get         |   ✅   |             Zig |
+| fd_filestat_set_size    |   ✅   |        Rust,Zig |
+| fd_filestat_set_times   |   ✅   |        Rust,Zig |
+| fd_pread                |   ✅   |             Zig |
+| fd_prestat_get          |   ✅   | Rust,TinyGo,Zig |
+| fd_prestat_dir_name     |   ✅   | Rust,TinyGo,Zig |
+| fd_pwrite               |   ✅   |        Rust,Zig |
+| fd_read                 |   ✅   | Rust,TinyGo,Zig |
+| fd_readdir              |   ✅   |        Rust,Zig |
+| fd_renumber             |   ✅   |            libc |
+| fd_seek                 |   ✅   |          TinyGo |
+| fd_sync                 |   ✅   |              Go |
+| fd_tell                 |   ✅   |            Rust |
+| fd_write                |   ✅   | Rust,TinyGo,Zig |
+| path_create_directory   |   ✅   | Rust,TinyGo,Zig |
+| path_filestat_get       |   ✅   | Rust,TinyGo,Zig |
+| path_filestat_set_times |   ✅   |       Rust,libc |
+| path_link               |   ✅   |        Rust,Zig |
+| path_open               |   ✅   | Rust,TinyGo,Zig |
+| path_readlink           |   ✅   |        Rust,Zig |
+| path_remove_directory   |   ✅   | Rust,TinyGo,Zig |
+| path_rename             |   ✅   | Rust,TinyGo,Zig |
+| path_symlink            |   ✅   |        Rust,Zig |
+| path_unlink_file        |   ✅   | Rust,TinyGo,Zig |
+| poll_oneoff             |   ✅   | Rust,TinyGo,Zig |
+| proc_exit               |   ✅   | Rust,TinyGo,Zig |
 | proc_raise              |   💀   |                 |
-| sched_yield             |   ✅    |            Rust |
-| random_get              |   ✅    | Rust,TinyGo,Zig |
-| sock_accept             |   ✅    |        Rust,Zig |
-| sock_recv               |   ✅    |        Rust,Zig |
-| sock_send               |   ✅    |        Rust,Zig |
-| sock_shutdown           |   ✅    |        Rust,Zig |
+| sched_yield             |   ✅   |            Rust |
+| random_get              |   ✅   | Rust,TinyGo,Zig |
+| sock_accept             |   ✅   |        Rust,Zig |
+| sock_recv               |   ✅   |        Rust,Zig |
+| sock_send               |   ✅   |        Rust,Zig |
+| sock_shutdown           |   ✅   |        Rust,Zig |
 
 Note: 💀 means the function was later removed from WASI.
 
@@ -143,8 +147,8 @@ Note: 💀 means the function was later removed from WASI.
 [4]: https://github.com/WebAssembly/WASI/blob/snapshot-01/phases/snapshot/docs.md
 [5]: https://github.com/WebAssembly/WASI
 [6]: https://github.com/WebAssembly/spec/tree/wg-1.0/test/core
-[7]: https://pkg.go.dev/github.com/tetratelabs/wazero#RuntimeConfig
-[9]: https://github.com/tetratelabs/wazero/issues/59
+[7]: https://pkg.go.dev/github.com/AR1011/wazero#RuntimeConfig
+[9]: https://github.com/AR1011/wazero/issues/59
 [10]: https://github.com/WebAssembly/proposals
 [11]: https://github.com/WebAssembly/proposals/blob/main/finished-proposals.md
 [12]: https://www.w3.org/community/webassembly/

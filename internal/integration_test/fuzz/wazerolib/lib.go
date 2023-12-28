@@ -13,11 +13,11 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/tetratelabs/wazero"
-	"github.com/tetratelabs/wazero/experimental/opt"
-	"github.com/tetratelabs/wazero/internal/leb128"
-	"github.com/tetratelabs/wazero/internal/testing/binaryencoding"
-	"github.com/tetratelabs/wazero/internal/wasm"
+	"github.com/AR1011/wazero"
+	"github.com/AR1011/wazero/experimental/opt"
+	"github.com/AR1011/wazero/internal/leb128"
+	"github.com/AR1011/wazero/internal/testing/binaryencoding"
+	"github.com/AR1011/wazero/internal/wasm"
 )
 
 func main() {}

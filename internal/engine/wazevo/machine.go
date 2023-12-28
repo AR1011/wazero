@@ -3,8 +3,8 @@ package wazevo
 import (
 	"runtime"
 
-	"github.com/tetratelabs/wazero/internal/engine/wazevo/backend"
-	"github.com/tetratelabs/wazero/internal/engine/wazevo/backend/isa/arm64"
+	"github.com/AR1011/wazero/internal/engine/wazevo/backend"
+	"github.com/AR1011/wazero/internal/engine/wazevo/backend/isa/arm64"
 )
 
 func newMachine() backend.Machine {

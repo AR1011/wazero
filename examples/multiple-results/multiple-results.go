@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/tetratelabs/wazero"
-	"github.com/tetratelabs/wazero/api"
+	"github.com/AR1011/wazero"
+	"github.com/AR1011/wazero/api"
 )
 
 // main implements functions with multiple returns values, using both an
