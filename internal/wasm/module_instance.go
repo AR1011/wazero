@@ -11,6 +11,7 @@ import (
 
 // FailIfClosed returns a sys.ExitError if CloseWithExitCode was called.
 func (m *ModuleInstance) FailIfClosed() (err error) {
+	fmt.Println("FailIfClosed")
 	if closed := m.Closed.Load(); closed != 0 {
 		switch closed & exitCodeFlagMask {
 		case exitCodeFlagResourceClosed:
@@ -98,6 +99,7 @@ func (m *ModuleInstance) Close(ctx context.Context) (err error) {
 
 // CloseWithExitCode implements the same method as documented on api.Module.
 func (m *ModuleInstance) CloseWithExitCode(ctx context.Context, exitCode uint32) (err error) {
+	fmt.Println("CloseWithExitCode")
 	if !m.setExitCode(exitCode, exitCodeFlagResourceClosed) {
 		return nil // not an error to have already closed
 	}
@@ -120,10 +122,11 @@ func (m *ModuleInstance) closeWithExitCodeWithoutClosingResource(exitCode uint32
 
 // closeWithExitCode is the same as CloseWithExitCode besides this doesn't delete it from Store.moduleList.
 func (m *ModuleInstance) closeWithExitCode(ctx context.Context, exitCode uint32) (err error) {
+	fmt.Println("closeWithExitCode")
 	if !m.setExitCode(exitCode, exitCodeFlagResourceClosed) {
 		return nil // not an error to have already closed
 	}
-	return nil
+	return m.ensureResourcesClosed(ctx)
 }
 
 type exitCodeFlag = uint64
@@ -146,7 +149,7 @@ func (m *ModuleInstance) setExitCode(exitCode uint32, flag exitCodeFlag) bool {
 // Only one call will happen per module, due to external atomic guards on Closed.
 func (m *ModuleInstance) ensureResourcesClosed(ctx context.Context) (err error) {
 	fmt.Println("ensureResourcesClosed")
-	return nil
+	return
 	if closeNotifier := m.CloseNotifier; closeNotifier != nil { // experimental
 		closeNotifier.CloseNotify(ctx, uint32(m.Closed.Load()>>32))
 		m.CloseNotifier = nil
